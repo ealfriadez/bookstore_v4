@@ -34,9 +34,8 @@ public class BookService {
 
     @Transactional(readOnly = true)
     public List<BookResponse> findAll() {
-        return bookRepository.findAll().stream()
-                .map(bookMapper::toResponse)
-                .toList();
+        List<Book> books = bookRepository.findAll();
+        return bookMapper.toResponseList(books);
     }
 
     @Transactional(readOnly = true)
@@ -49,12 +48,16 @@ public class BookService {
 
     @Transactional
     public BookResponse save(BookRequest request) {
-        Author author = authorRepository.findById(request.authorId())
+
+        Long authorId = request.authorId();
+
+        var author = authorRepository.findById(request.authorId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Autor no encontrado con ID: %d".formatted(request.authorId())));
 
-        if (bookRepository.existsByTitleAndAuthorId(
-                request.title(), request.authorId())) {
+        boolean exists = bookRepository.existsByTitleAndAuthorId(request.title(), authorId);
+
+        if (exists) {
             throw new DuplicateResourceException(
                     "Ya existe un libro con el titulo '%s' para el autor con ID: %d"
                             .formatted(request.title(), request.authorId()));
@@ -62,7 +65,7 @@ public class BookService {
 
         Book book = bookMapper.toEntity(request);
         book.setAuthor(author);
-        book.setEditorial(Editorial.valueOf(request.editorial()));
+
         return bookMapper.toResponse(bookRepository.save(book));
     }
 

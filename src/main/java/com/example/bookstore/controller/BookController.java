@@ -25,8 +25,8 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BookResponse>> getAllBooks() {
-        return ResponseEntity.ok(bookService.findAll());
+    public ResponseEntity<List<BookResponse>> getAll() {
+        return new ResponseEntity(bookService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -35,10 +35,9 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BookResponse> createBook(
+    public ResponseEntity<BookResponse> save(
             @Valid @RequestBody BookRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(bookService.save(request));
+        return new ResponseEntity<>(bookService.save(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

@@ -10,10 +10,10 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface AuthorMapper {
 
-    AuthorResponse toResponse(Author author);
-
     @Mapping(target = "id", ignore = true)
     Author toEntity(AuthorRequest request);
+
+    AuthorResponse toResponse(Author author);
 
     @Mapping(target = "id", ignore = true)
     void updateEntityFromRequest(AuthorRequest request,

@@ -19,6 +19,7 @@ public record BookRequest(
 
     @NotNull(message = "El stock es obligatorio")
     @PositiveOrZero(message = "El stock no puede ser negativo")
+    @Min(value = 0, message = "La cantidad de stock debe ser mayor o igual a 0")
     Integer stock,
 
     @NotBlank(message = "La editorial es obligatoria")

@@ -9,6 +9,5 @@ public record BookResponse(
     String imageUrl,
     Integer stock,
     String editorial,
-    Long authorId,
-    String authorName
+    String authorFullName
 ) {}
