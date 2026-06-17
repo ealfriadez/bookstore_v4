@@ -3,14 +3,14 @@ spring:
     name: bookstore
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/bookstore_bd
+    url: jdbc:postgresql://localhost:5432/bookstore_db
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
 
 server:

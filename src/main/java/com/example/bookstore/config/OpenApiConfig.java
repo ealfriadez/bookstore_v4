@@ -15,7 +15,7 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("Bookstore API")
                         .version("1.0.0")
-                        .description("API REST para la gestion de una libreria digital.")
+                        .description("API REST PARA LA GESTION DE UNA LIBRERIA DIGITAL")
                         .contact(new Contact()
                                 .name("Equipo de Desarrollo")
                                 .email("dev@bookstore.com")));
