@@ -9,8 +9,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "purchases")
-@Getter @Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Purchase {
 
     @Id

@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface AuthorMapper {
 
@@ -18,4 +20,6 @@ public interface AuthorMapper {
     @Mapping(target = "id", ignore = true)
     void updateEntityFromRequest(AuthorRequest request,
                                   @MappingTarget Author author);
+
+    List<AuthorResponse> toResponseList(List<Author> authors);
 }
